@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title -->
+    <title>Salo | Wholesale Management System</title>
+
+    <!-- logo -->
+    <link rel="icon" type="image/x-icon" href="../assets/icons/logo.svg">
+
+    <!-- built in css -->
+    <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/WantedSansFont.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="../styles/css/app.css">
+
+    <!-- built in js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script>
+    <script src="../styles/js/bootstrap.min.js"></script>
+    <script src="../styles/js/jquery.js"></script>
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-firestore.js"></script>
+
+    <!-- js -->
+    <script src="../styles/js/app.js"></script>
+
+</head>
+<body>
+    <div class="sidebar">
+        <button data-section="companies">Companies</button>
+        <button data-section="products">Products</button>
+        <button data-section="order-bookers">Order Bookers</button>
+        <button data-section="customers">Customers</button>
+        <button data-section="add-purchases">Add Purchases</button>
+        <button data-section="manage-purchases">Manage Purchases</button>
+        <button data-section="add-sales">Add Sales</button>
+        <button data-section="manage-sales">Manage Sales</button>
+      </div>
+      <div class="content">
+    
+        <div id="companies" class="section hidden">
+          <h2>Companies</h2>
+          <button id="addCompanyBtn">Add Company</button>
+          <table id="companiesTable">
+            <thead><tr><th>Name</th><th>Address</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="popup" id="addCompanyPopup">
+          <h3>Add Company</h3>
+          <input type="text" id="companyName" placeholder="Company Name"><br><br>
+          <input type="text" id="companyAddress" placeholder="Address"><br><br>
+          <button id="saveCompanyBtn">Add Company</button>
+          <button onclick="$('#addCompanyPopup').hide()">Cancel</button>
+        </div>
+    
+        <div id="products" class="section hidden">
+          <h2>Products</h2>
+          <button id="addProductBtn">Add Product</button>
+          <table id="productsTable">
+            <thead><tr><th>Name</th><th>Company</th><th>Stock</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="popup" id="addProductPopup">
+          <h3>Add Product</h3>
+          <input type="text" id="productName" placeholder="Product Name"><br><br>
+          <select id="productCompany"></select><br><br>
+          <button id="saveProductBtn">Add Product</button>
+          <button onclick="$('#addProductPopup').hide()">Cancel</button>
+        </div>
+    
+        <div id="order-bookers" class="section hidden">
+          <h2>Order Bookers</h2>
+          <button id="addOrderBookerBtn">Add Order Booker</button>
+          <table id="orderBookersTable">
+            <thead><tr><th>Name</th><th>Contact</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="popup" id="addOrderBookerPopup">
+          <h3>Add Order Booker</h3>
+          <input type="text" id="orderBookerName" placeholder="Name"><br><br>
+          <input type="text" id="orderBookerContact" placeholder="Contact"><br><br>
+          <button id="saveOrderBookerBtn">Add Order Booker</button>
+          <button onclick="$('#addOrderBookerPopup').hide()">Cancel</button>
+        </div>
+    
+        <div id="customers" class="section hidden">
+          <h2>Customers</h2>
+          <button id="addCustomerBtn">Add Customer</button>
+          <table id="customersTable">
+            <thead><tr><th>Name</th><th>Order Booker</th><th>Contact</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="popup" id="addCustomerPopup">
+          <h3>Add Customer</h3>
+          <input type="text" id="customerName" placeholder="Customer Name"><br><br>
+          <select id="customerOrderBooker"></select><br><br>
+          <input type="text" id="customerContact" placeholder="Contact"><br><br>
+          <button id="saveCustomerBtn">Add Customer</button>
+          <button onclick="$('#addCustomerPopup').hide()">Cancel</button>
+        </div>
+    
+        <div id="add-purchases" class="section hidden">
+            <h2>Add Purchases</h2>
+            <label>Select Company:</label>
+            <select id="purchaseCompany"></select>
+            <br><br>
+            <label>Date:</label>
+            <input type="date" id="purchaseDate">
+            <br><br>
+            <table id="purchaseProductsTable">
+              <thead><tr><th>Product</th><th>Quantity</th><th>Price</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <br>
+            <button id="addPurchaseBtn">Add Purchase</button>
+          </div>
+          
+          <!-- Manage Purchases Section -->
+          <div id="manage-purchases" class="section hidden">
+            <h2>Manage Purchases</h2>
+            <label>From:</label>
+            <input type="date" id="purchaseFromDate">
+            <label>To:</label>
+            <input type="date" id="purchaseToDate">
+            <br><br>
+            <table id="managePurchasesTable">
+              <thead><tr><th>Date</th><th>Company</th><th>Details</th><th>Action</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          
+          <!-- Add Sales Section -->
+          <div id="add-sales" class="section hidden">
+            <h2>Add Sales</h2>
+            <label>Select Customer:</label>
+            <select id="saleCustomer"></select>
+            <br><br>
+            <label>Select Order Booker:</label>
+            <select id="saleOrderBooker"></select>
+            <br><br>
+            <label>Date:</label>
+            <input type="date" id="saleDate">
+            <br><br>
+            <table id="saleProductsTable">
+              <thead><tr><th>Product</th><th>Available</th><th>Sold</th><th>Price</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <br>
+            <button id="addSaleBtn">Add Sale</button>
+          </div>
+          
+          <!-- Manage Sales Section -->
+          <div id="manage-sales" class="section hidden">
+            <h2>Manage Sales</h2>
+            <label>From:</label>
+            <input type="date" id="saleFromDate">
+            <label>To:</label>
+            <input type="date" id="saleToDate">
+            <br><br>
+            <table id="manageSalesTable">
+              <thead><tr><th>Date</th><th>Customer</th><th>Details</th><th>Action</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+    <script>
+
+            function base64ToUint8Array(base64String) {
+                const binaryString = atob(base64String);  // Decode from Base64
+                const len = binaryString.length;
+                const uint8Array = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    uint8Array[i] = binaryString.charCodeAt(i);  // Convert each character to byte
+                }
+                return uint8Array;
+            }
+
+            var auth;
+        var db;
+        const firebaseConfig = {
+            apiKey: "AIzaSyDSB2rePH62fBGh94yOFj3Q5yDuiIszY9w",
+            authDomain: "mohsinsalodb.firebaseapp.com",
+            projectId: "mohsinsalodb",
+            storageBucket: "mohsinsalodb.firebasestorage.app",
+            messagingSenderId: "961251881312",
+            appId: "1:961251881312:web:304469c31c53dc0fecae05",
+            measurementId: "G-8CY7549CKR"
+          };
+
+          try{
+              firebase.initializeApp(firebaseConfig);
+              auth = firebase.auth();
+              db = firebase.firestore();
+          }
+          catch(e){alert(e);}
+            const userId = localStorage.getItem("UserID");
+
+    // Load Functions
+    function loadCompanies() {
+      db.collection("companies").where("userId", "==", userId).get().then(snapshot => {
+        let rows = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          rows += `<tr><td>${data.name}</td><td>${data.address}</td><td><button onclick="deleteCompany('${doc.id}')">Delete</button></td></tr>`;
+        });
+        $('#companiesTable tbody').html(rows);
+        loadCompanyDropdown();
+      });
+    }
+
+    function deleteCompany(id) {
+      db.collection("companies").doc(id).delete().then(loadCompanies);
+    }
+
+    function loadCompanyDropdown() {
+      db.collection("companies").where("userId", "==", userId).get().then(snapshot => {
+        let options = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          options += `<option value="${doc.id}">${data.name}</option>`;
+        });
+        $('#productCompany').html(options);
+      });
+    }
+
+    function loadProducts() {
+      db.collection("products").where("userId", "==", userId).get().then(snapshot => {
+        let rows = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          db.collection("companies").doc(data.companyId).get().then(companyDoc => {
+            const company = companyDoc.data()?.name || 'Unknown';
+            rows += `<tr><td>${data.name}</td><td>${company}</td><td>${data.stock || 0}</td><td><button onclick="deleteProduct('${doc.id}')">Delete</button></td></tr>`;
+            $('#productsTable tbody').html(rows);
+          });
+        });
+      });
+    }
+
+    function deleteProduct(id) {
+      db.collection("products").doc(id).delete().then(loadProducts);
+    }
+
+    function loadOrderBookers() {
+      db.collection("orderBookers").where("userId", "==", userId).get().then(snapshot => {
+        let rows = "";
+        let options = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          rows += `<tr><td>${data.name}</td><td>${data.contact}</td><td><button onclick="deleteOrderBooker('${doc.id}')">Delete</button></td></tr>`;
+          options += `<option value="${doc.id}">${data.name}</option>`;
+        });
+        $('#orderBookersTable tbody').html(rows);
+        $('#customerOrderBooker').html(options);
+      });
+    }
+
+    function deleteOrderBooker(id) {
+      db.collection("orderBookers").doc(id).delete().then(loadOrderBookers);
+    }
+
+    function loadCustomers() {
+      db.collection("customers").where("userId", "==", userId).get().then(snapshot => {
+        let rows = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          db.collection("orderBookers").doc(data.orderBookerId).get().then(orderBookerDoc => {
+            const orderBooker = orderBookerDoc.data()?.name || 'Unknown';
+            rows += `<tr><td>${data.name}</td><td>${orderBooker}</td><td>${data.contact}</td><td><button onclick="deleteCustomer('${doc.id}')">Delete</button></td></tr>`;
+            $('#customersTable tbody').html(rows);
+          });
+        });
+      });
+    }
+
+    function deleteCustomer(id) {
+      db.collection("customers").doc(id).delete().then(loadCustomers);
+    }
+
+    function getCurrentDate() {
+  const today = new Date();
+  return today.toISOString().substr(0, 10);
+}
+
+// Populate dropdowns
+function populateCompanyDropdown(selectId) {
+  db.collection("users").doc(userID).collection("companies").get().then(snapshot => {
+    const select = document.getElementById(selectId);
+    select.innerHTML = '';
+    snapshot.forEach(doc => {
+      const option = document.createElement("option");
+      option.value = doc.id;
+      option.text = doc.data().name;
+      select.appendChild(option);
+    });
+  });
+}
+
+function populateProductTableForPurchase(companyId) {
+  db.collection("users").doc(userID).collection("products")
+    .where("companyId", "==", companyId).get().then(snapshot => {
+      const tbody = document.getElementById("purchaseProductsTable").querySelector("tbody");
+      tbody.innerHTML = "";
+      snapshot.forEach(doc => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${doc.data().name}</td>
+          <td><input type='number' min='0' data-product-id='${doc.id}' class='qty'></td>
+          <td><input type='number' min='0' class='price'></td>`;
+        tbody.appendChild(tr);
+      });
+    });
+}
+
+function populateCustomerDropdown() {
+  db.collection("users").doc(userID).collection("customers").get().then(snapshot => {
+    const customerSelect = document.getElementById("saleCustomer");
+    customerSelect.innerHTML = '';
+    snapshot.forEach(doc => {
+      const option = document.createElement("option");
+      option.value = doc.id;
+      option.text = doc.data().name;
+      customerSelect.appendChild(option);
+    });
+  });
+}
+
+function populateOrderBookerDropdown() {
+  db.collection("users").doc(userID).collection("orderBookers").get().then(snapshot => {
+    const obSelect = document.getElementById("saleOrderBooker");
+    obSelect.innerHTML = '';
+    snapshot.forEach(doc => {
+      const option = document.createElement("option");
+      option.value = doc.id;
+      option.text = doc.data().name;
+      obSelect.appendChild(option);
+    });
+  });
+}
+
+function populateProductTableForSale() {
+  db.collection("users").doc(userID).collection("products").get().then(snapshot => {
+    const tbody = document.getElementById("saleProductsTable").querySelector("tbody");
+    tbody.innerHTML = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${data.name}</td>
+        <td>${data.stock || 0}</td>
+        <td><input type='number' min='0' max='${data.stock || 0}' data-product-id='${doc.id}' class='qty'></td>
+        <td><input type='number' min='0' class='price'></td>`;
+      tbody.appendChild(tr);
+    });
+  });
+}
+
+// Event listeners for dropdown changes
+$("#purchaseCompany").on("change", function() {
+  populateProductTableForPurchase(this.value);
+});
+
+// Add Purchase
+$("#addPurchaseBtn").on("click", function() {
+  const companyId = $("#purchaseCompany").val();
+  const date = $("#purchaseDate").val();
+  const rows = $("#purchaseProductsTable tbody tr");
+  const items = [];
+  rows.each(function() {
+    const productId = $(this).find(".qty").data("product-id");
+    const qty = parseInt($(this).find(".qty").val()) || 0;
+    const price = parseFloat($(this).find(".price").val()) || 0;
+    if (qty > 0 && price > 0) {
+      items.push({ productId, qty, price });
+    }
+  });
+  if (items.length) {
+    db.collection("users").doc(userID).collection("purchases").add({
+      companyId, date, items
+    }).then(() => {
+      items.forEach(item => {
+        const ref = db.collection("users").doc(userID).collection("products").doc(item.productId);
+        ref.update({ stock: firebase.firestore.FieldValue.increment(item.qty) });
+      });
+      alert("Purchase recorded");
+    });
+  }
+});
+
+// Add Sale
+$("#addSaleBtn").on("click", function() {
+  const customerId = $("#saleCustomer").val();
+  const orderBookerId = $("#saleOrderBooker").val();
+  const date = $("#saleDate").val();
+  const rows = $("#saleProductsTable tbody tr");
+  const items = [];
+  rows.each(function() {
+    const productId = $(this).find(".qty").data("product-id");
+    const qty = parseInt($(this).find(".qty").val()) || 0;
+    const price = parseFloat($(this).find(".price").val()) || 0;
+    if (qty > 0 && price > 0) {
+      items.push({ productId, qty, price });
+    }
+  });
+  if (items.length) {
+    db.collection("users").doc(userID).collection("sales").add({
+      customerId, orderBookerId, date, items
+    }).then(() => {
+      items.forEach(item => {
+        const ref = db.collection("users").doc(userID).collection("products").doc(item.productId);
+        ref.update({ stock: firebase.firestore.FieldValue.increment(-item.qty) });
+      });
+      alert("Sale recorded");
+    });
+  }
+});
+
+    // UI Event Handlers
+    $(document).ready(function () {
+      $('.sidebar button').click(function () {
+        const section = $(this).data('section');
+        $('.section').addClass('hidden');
+        $('#' + section).removeClass('hidden');
+        if (section === 'companies') loadCompanies();
+        else if (section === 'products') loadProducts();
+        else if (section === 'order-bookers') loadOrderBookers();
+        else if (section === 'customers') loadCustomers();
+      });
+
+      $('#addCompanyBtn').click(() => $('#addCompanyPopup').show());
+      $('#saveCompanyBtn').click(function () {
+        const name = $('#companyName').val();
+        const address = $('#companyAddress').val();
+        if (!name || !address) return alert("Fill all fields");
+        db.collection("companies").add({ name, address, userId }).then(() => {
+          $('#addCompanyPopup').hide();
+          $('#companyName, #companyAddress').val('');
+          loadCompanies();
+        });
+      });
+
+      $('#addProductBtn').click(() => $('#addProductPopup').show());
+      $('#saveProductBtn').click(function () {
+        const name = $('#productName').val();
+        const companyId = $('#productCompany').val();
+        if (!name || !companyId) return alert("Fill all fields");
+        db.collection("products").add({ name, companyId, stock: 0, userId }).then(() => {
+          $('#addProductPopup').hide();
+          $('#productName').val('');
+          loadProducts();
+        });
+      });
+
+      $('#addOrderBookerBtn').click(() => $('#addOrderBookerPopup').show());
+      $('#saveOrderBookerBtn').click(function () {
+        const name = $('#orderBookerName').val();
+        const contact = $('#orderBookerContact').val();
+        if (!name || !contact) return alert("Fill all fields");
+        db.collection("orderBookers").add({ name, contact, userId }).then(() => {
+          $('#addOrderBookerPopup').hide();
+          $('#orderBookerName, #orderBookerContact').val('');
+          loadOrderBookers();
+        });
+      });
+
+      $('#addCustomerBtn').click(() => $('#addCustomerPopup').show());
+      $('#saveCustomerBtn').click(function () {
+        const name = $('#customerName').val();
+        const contact = $('#customerContact').val();
+        const orderBookerId = $('#customerOrderBooker').val();
+        if (!name || !contact || !orderBookerId) return alert("Fill all fields");
+        db.collection("customers").add({ name, contact, orderBookerId, userId }).then(() => {
+          $('#addCustomerPopup').hide();
+          $('#customerName, #customerContact').val('');
+          loadCustomers();
+        });
+      });
+      $("#purchaseDate, #saleDate, #purchaseFromDate, #purchaseToDate, #saleFromDate, #saleToDate").val(getCurrentDate());
+  populateCompanyDropdown("purchaseCompany");
+  populateCompanyDropdown("companySelect");
+  populateCustomerDropdown();
+  populateOrderBookerDropdown();
+  populateProductTableForSale();
+    });
+    </script>
+</body>
+</html>

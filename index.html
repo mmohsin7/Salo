@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- title -->
+        <title>Salo | Wholesale Management System</title>
+
+        <!-- logo -->
+        <link rel="icon" type="image/x-icon" href="assets/icons/logo.svg">
+
+        <!-- built in css -->
+        <link rel="stylesheet" href="styles/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/fonts/WantedSansFont.css">
+        <link rel="stylesheet" href="styles/css/swiperjs.min.css">
+
+
+        <!-- css -->
+        <link rel="stylesheet" href="styles/css/index.css">
+
+        <!-- firebase -->
+        <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-firestore.js"></script>
+
+        <!-- built in js -->
+        <script src="styles/js/bootstrap.min.js"></script>
+        <script src="styles/js/swiperjs.min.js"></script>
+        <script src="styles/js/jquery.js"></script>
+
+        <!-- js -->
+        <script src="styles/js/index.js"></script>
+    </head>
+    <body>
+        <div class="blob"></div>
+
+        <!-- navigation bar -->
+        <nav class="nav-bar">
+            <div class="nav-header">
+                <a href="#" class="aaa hidden"><img src="assets/icons/logo.svg">Salo</a>
+                <button class="menu-button">
+                    <span class="line top"></span>
+                    <span class="line bottom"></span>
+                </button>
+            </div>
+            <ul class="menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#aboutus">About Us</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+                <li>
+                    <div>
+                        <button id="signup-button">Sign up</button>
+                        <span></span>
+                        <button id="login-button">Login</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- home section -->
+        <section id="home">
+            <div class="home-section">
+                <div class="left-home-section">
+                    <img src="assets/icons/logo.svg">
+                    <h1>Salo</h1>
+                    <h3>Smart Wholesale <br> Stock Management System</h3>
+                    <h5>Simplify Your Inventory, Sales & Transactions</h5>
+                    <p>Manage your stock, track sales, handle recoveries, streamline transactions, and optimize your wholesale business with ease.</p>
+                    <button id="get-started-now-button">Get Started<img src="assets/icons/rightarrow.svg"></button>
+                </div>
+                <div class="right-home-section">
+                    <img src="assets/images/CustomersImage.png" alt="Banner Image" class="img-fluid title-image title-img-1">
+                    <img src="assets/images/SalesImage.png" alt="Banner Image" class="img-fluid title-image title-img-2">
+                </div>
+            </div>
+        </section>
+        
+        <!-- aboutus section -->
+        <section id="aboutus">
+            <div class="aboutus-section">
+                <div class="section-header">
+                    <h1>About Us</h1>
+                    <hr>
+                    <p>Revolutionizing Wholesale Stock Management</p>
+                </div>
+                <div class="aboutus-section-content">
+                    <div>
+                        <img src="assets/images/challenges.jpg">
+                        <h1>Challenges</h1>
+                        <p>Managing a wholesale business comes with complexities—tracking orders, handling multiple bookers, managing purchases, and monitoring transactions. Salo simplifies it all with an intuitive, all-in-one stock management system.</p>
+                    </div>
+                    <div>
+                        <img src="assets/images/mission.jpg">
+                        <h1>Our Mission</h1>
+                        <p>We aim to help wholesalers save time, reduce errors, and grow their businesses with confidence. Built on industry expertise, our platform combines powerful features with a seamless user experience to let you focus on what matters most—scaling your business.</p>
+                    </div>
+                    <div>
+                        <img src="assets/images/trust.jpg">
+                        <h1>Trusted by the Community</h1>
+                        <p>Thousands of business owners have transformed their operations with Salo. Our automation and advanced tools optimize inventory, streamline workflows, and drive growth. Let us take your wholesale business to the next level!</p>
+                    </div>
+                </div>
+                <button class="primary-button">Learn more about our mission</button>
+            </div>
+        </section>
+
+        <!-- features section -->
+        <section id="features">
+            <div class="features-section">
+                <div class="section-header">
+                    <h1>Features</h1>
+                    <hr>
+                    <p>Features that make best for best</p>
+                </div>
+                <div class="features-section-content">
+                    <div class="swiper swiper1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/icons/products.svg">
+                                <h3>Manage Products</h3>
+                                <p>Manage Products means what you have available in the stock, and what you sold, and how much sold and how much purchased and also according to their respective companies.</p>
+                            </div>            
+                            <div class="swiper-slide">
+                                <img src="assets/icons/customers.svg">
+                                <h3>Manage Customers</h3>
+                                <p>Manage customers records their details, when and how much they purchase and you sale to that and which products you sale to that customer, track recoveries transaction also fo customers.</p>
+                            </div>            
+                            <div class="swiper-slide">
+                                <img src="assets/icons/transactions.svg">
+                                <h3>Manage Transactions</h3>
+                                <p>Manage all transactions what sold and what purchase and how much pending transaction of the companies and how much recoveries pending of the customers and all ledgers.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper swiper2">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/icons/orderbookers.svg">
+                                <h3>Manage Order Bookers</h3>
+                                <p>Manage order bookers and their ledgers, means all track records of order booker how much sale they done and how much sale done of that product of company and how many recovery pendings.</p>
+                            </div>            
+                            <div class="swiper-slide">
+                                <img src="assets/icons/sales.svg">
+                                <h3>Manage Sales</h3>
+                                <p>Manage sales of customers on their respective order bookers, where check and manage how much sales done till now and from date to date, how much sale have done of that customer or of that order booker.</p>
+                            </div>            
+                            <div class="swiper-slide">
+                                <img src="assets/icons/purchases.svg">
+                                <h3>Manage Purchases</h3>
+                                <p>Manage companies purchases of products, means how much purhase order from that company how many transaction pending of that company and manage ledgers also.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="primary-button">Explore<img src="assets/icons/rightarrow.svg"></button>
+            </div>
+        </section>
+        <!-- aboutus section -->
+        <section id="faqs">
+            <div class="faqs-section">
+                <div class="section-header">
+                    <h1>FAQs</h1>
+                    <hr>
+                    <p>Frequently Asked Questions</p>
+                </div>
+                <div class="faqs-section-content">
+                    <div class="container">
+                        <div class="faqs-container p-4">
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item bg-transparent border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                            Is this system suitable for small businesses?
+                                        </button>
+                                    </h2>
+                                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, it is designed for businesses of all sizes.
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="accordion-item bg-transparent border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                            Can I manage multiple warehouses or locations?
+                                        </button>
+                                    </h2>
+                                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, our system supports multiple locations seamlessly.
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="accordion-item bg-transparent border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                            How secure is my data?
+                                        </button>
+                                    </h2>
+                                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Your data is encrypted and securely stored with regular backups.
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="accordion-item bg-transparent border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                            Do you offer customer support?
+                                        </button>
+                                    </h2>
+                                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, our support team is available 24/7 to assist you with any issues or questions.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="primary-button faqs-section-button">Contact Support</button>
+            </div>
+        </section>
+
+        <!-- testimonials section -->
+        <section id="testimonials">
+            <div class="testimonials-section">
+                <div class="section-header">
+                    <h1>Testimonials</h1>
+                    <hr>
+                    <p>What Our Clients Say About Us</p>
+                </div>
+                <div class="testimonials-section-content">
+                    <div class="testimonials-section-content-slider">
+                        <div class="testimonials-section-card">
+                            <div>
+                                <img src="assets/images/User1.png">
+                                <div>
+                                    <h3>Ahsan Naseer</h3>
+                                    <p>CEO of Ahsan Retails</p>
+                                </div>
+                            </div>
+                            <p>This wholesale management system is incredibly efficient and easy to use. It has simplified our sales, transactions, and ledger management. Highly recommended for any wholesale business!</p>
+                        </div>
+                        <div class="testimonials-section-card">
+                            <div>
+                                <img src="assets/images/User2.png">
+                                <div>
+                                    <h3>Faisal Ahmad</h3>
+                                    <p>Owner of Dawood Traders</p>
+                                </div>
+                            </div>
+                            <p>A game-changer for our business operations! Managing purchases, recoveries, and payments has never been this smooth. The user-friendly interface makes everything hassle-free.</p>
+                        </div>
+                        <div class="testimonials-section-card">
+                            <div>
+                                <img src="assets/images/User3.png">
+                                <div>
+                                    <h3>Naseer Ahmad</h3>
+                                    <p>Director of Hashim Traders</p>
+                                </div>
+                            </div>
+                            <p>This software keeps everything organized, from customer transactions to product management. The automated ledger system saves time and reduces errors. Truly a must-have tool!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- feedback section -->
+        <section id="feedback">
+            <div class="feedback-section">
+                <div class="section-header">
+                    <h1>Feedback</h1>
+                    <hr>
+                    <p>Your feedback helps us improve<br>share your thoughts!</p>
+                </div>
+                <div class="feedback-section-content">
+                    <form id="feedback-form">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="feedback-name" placeholder="Name" required>
+                            <label for="feedback-name">Name</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+                        
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="feedback-email" placeholder="Email" required>
+                            <label for="feedback-email">Email</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+            
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="feedback-subject" placeholder="Subject" required>
+                            <label for="feedbak-subject">Subject</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+            
+                        <textarea id="feedback-message" class="form-message-box" placeholder="Write your message here ..." required></textarea>
+            
+                        <button type="submit" class="primary-button">Submit Feedback</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <div class="footer">
+                
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+                <ul class="social-links">
+                    <li><a href="#"><img class="social-icon" src="assets/icons/facebook.svg">&nbsp;&nbsp;Facebook</a></li>
+                    <li><a href="#"><img class="social-icon" src="assets/icons/x.svg">&nbsp;&nbsp;X</a></li>
+                    <li><a href="#"><img class="social-icon" src="assets/icons/instagram.svg">&nbsp;&nbsp;Instagram</a></li>
+                    <li><a href="#"><img class="social-icon" src="assets/icons/thread.svg">&nbsp;&nbsp;Thread</a></li>
+                </ul>
+            </div>
+            
+            <div class="copyright">
+                © 2025 Salo. All rights reserved.
+            </div>
+        </footer>
+
+        <!-- login -->
+        <div id="login-credentials-panel" class="credentials-panel">
+            <div class="credentials-panel-content">
+                <img class="background-image" src="assets/images/SalesImage.png">
+                <img class="background-image" src="assets/images/CustomersImage.png">
+                <div class="credentials-panel-content-section">
+                    <div class="credentials-panel-content-header">
+                        <div>
+                            <div>
+                                <img class="logo-image" src="assets/icons/logo.svg">
+                                <p>Salo</p>
+                            </div>
+                            <button id="close-login-section"><img src="assets/icons/close.svg"></button>
+                        </div>
+                        <h1>Welcome</h1>
+                    </div>
+                    <form id="login-form" class="credentials-form">
+                        
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="login-email" placeholder="Email" required>
+                            <label for="login-email">Email</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+            
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="login-password" placeholder="Password" required>
+                            <img id="toggle-login-password" class="toggle-password" src="assets/icons/hide.svg">
+                            <label for="login-password">Password</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+
+                        <div class="create-acoount-button"><button type="button" id="forget-password-button" class="secondary-button">Forget password?</button></div>
+                        <button type="submit" class="primary-button">Login</button>
+                        <div class="create-acoount-button"><button id="signup-button-from-login" class="secondary-button">Create an account</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- sign up -->
+        <div id="signup-credentials-panel" class="credentials-panel">
+            <div class="credentials-panel-content">
+                <img class="background-image" src="assets/images/SalesImage.png">
+                <img class="background-image" src="assets/images/CustomersImage.png">
+                <div class="credentials-panel-content-section">
+                    <div class="credentials-panel-content-header">
+                        <div>
+                            <div>
+                                <img class="logo-image" src="assets/icons/logo.svg">
+                                <p>Salo</p>
+                            </div>
+                            <button id="close-signup-section"><img src="assets/icons/close.svg"></button>
+                        </div>
+                        <h1>Get Started Now</h1>
+                    </div>
+                    <form id="signup-form" class="credentials-form">
+
+                        <div class="credentials-form-top">
+                            <button type="button" class="circular-image">
+                                <img id="circular-image-src" src="assets/images/profile_placeholder.png">
+                            </button>
+                            <input type="file" id="image-upload-input" accept="image/*" style="display: none;">                            
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="signup-name" placeholder="Name" required>
+                                <label for="signup-name">Name</label>
+                                <hr class="unfocus-hr">
+                                <hr class="focus-hr">
+                            </div>
+                        </div>
+                        
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="signup-email" placeholder="Email" required>
+                            <label for="signup-email">Email</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+            
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="signup-password" placeholder="Password" required>
+                            <img id="toggle-signup-password" class="toggle-password" src="assets/icons/hide.svg">
+                            <label for="signup-password">Password</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+
+                        <button type="submit" class="primary-button">Create an account</button>
+                        <div class="create-acoount-button">Already have an account? <button id="login-button-from-signup" class="secondary-button">Login</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- chat section -->
+         <button id="open-chat-button" class="chat-button"><img src="assets/icons/chat.svg"> Chat</button>
+
+        <!-- popups -->
+        
+        <!-- chat popup -->
+        <div id="chat-popup" class="popup">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <p>Chat</p>
+                    <button id="close-chat-popup" class="close-popup-button">
+                        <img src="assets/icons/close.svg">
+                    </button>
+                </div>
+                <div id="chat-container">
+                    <div id="chatbox"></div>
+                    <form id="input-container">
+                        <input type="text" id="user-input" placeholder="Ask something..." required>
+                        <button type="submit"><img src="assets/icons/send.svg"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- message popup -->
+        <div id="message-popup" class="popup">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <div class="popup-header-content"><img id="popup-header-icon"><p id="popup-header-title"></p></div>
+                    <button id="close-message-popup" class="close-popup-button">
+                        <img src="assets/icons/close.svg">
+                    </button>
+                </div>
+                <p id="popup-description"></p>
+                <button id="message-popup-button">OK</button>
+            </div>
+        </div>
+
+        <!-- verification popup popup -->
+        <div id="verification-popup" class="popup">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <div class="popup-header-content">Email Verification<p id="popup-header-title"></p></div>
+                </div>
+                <div>
+                    <p id="popup-description">Averification email has been sent to your email <span id="popup-description-email"></span>. Please check your email and click on verification to complete your account registeration.</p>
+                    <div class="loader-container">
+                        <div class="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+                <button id="verification-popup-button">Resend</button>
+            </div>
+        </div>
+
+        <!-- verification popup popup -->
+        <div id="forget-password-popup" class="popup">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <div class="popup-header-content">Forget Password<p id="popup-header-title"></p></div>
+                    <button id="close-forget-password-popup" class="close-popup-button">
+                        <img src="assets/icons/close.svg">
+                    </button>
+                </div>
+                <div>
+                    <form id="forget-password-form" class="credentials-form">
+
+                        <p id="popup-description">Enter your email and click on Send Email, After that check your email and follow the reset password process.</p>
+                        
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="forget-password-email" placeholder="Email" required>
+                            <label for="forget-password-email">Email</label>
+                            <hr class="unfocus-hr">
+                            <hr class="focus-hr">
+                        </div>
+
+                        <div class="button-container"><button type="submit" class="primary-button forget-password-button">Send Email</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

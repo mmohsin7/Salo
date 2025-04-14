@@ -1,24 +1,18 @@
 $(document).ready(
     function()
     {
-        var auth;
-        var db;
         const firebaseConfig = {
-            apiKey: "AIzaSyDSB2rePH62fBGh94yOFj3Q5yDuiIszY9w",
-            authDomain: "mohsinsalodb.firebaseapp.com",
-            projectId: "mohsinsalodb",
-            storageBucket: "mohsinsalodb.firebasestorage.app",
-            messagingSenderId: "961251881312",
-            appId: "1:961251881312:web:304469c31c53dc0fecae05",
-            measurementId: "G-8CY7549CKR"
-          };
-
-          try{
-              firebase.initializeApp(firebaseConfig);
-              auth = firebase.auth();
-              db = firebase.firestore();
-          }
-          catch(e){alert(e);}
+            apiKey: "...",
+            authDomain: "...",
+            projectId: "...",
+            storageBucket: "...",
+            messagingSenderId: "...",
+            appId: "...",
+            measurementId: "..."
+        };
+        firebase.initializeApp(firebaseConfig);
+        var auth = firebase.auth();
+        var db = firebase.firestore();
 
         // if already logged in
         function isUserLoggedIn() {
@@ -598,7 +592,7 @@ $(document).ready(
                 if (errorCode === 'auth/user-not-found' || errorCode === 'auth/invalid-email') {
                     OpenPopup(
                         "assets/icons/failed.svg",
-                        "Login failed",
+                        "Error",
                         "Invalid email, please enter valid email for reset password"
                     );
                 } else if (errorCode === 'auth/network-request-failed') {
